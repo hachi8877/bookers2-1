@@ -8,7 +8,13 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
   end
 
+  post 'follow/:id' => 'relationships#follow', as: 'follow'
+  delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+
   devise_for :users
-  resources :users, only: [:show,:index,:edit,:update]
+  resources :users, only: [:show,:index,:edit,:update] do
+    get :follower, :followed, on: :member
+  end
 
 end
+

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @book = Book.new
   end
 
+
   def index
     @users = User.all
     @book = Book.new
@@ -22,6 +23,14 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def followed
+    @user = User.find(params[:id])
+  end
+
+  def follower
+    @user = User.find(params[:id])
   end
 
   private
